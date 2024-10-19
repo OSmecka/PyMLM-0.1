@@ -10,6 +10,8 @@ X_DIV = X_SIZE/100
 NUM_TRAIN_SETS = 1
 MAX_NUM = X_SIZE
 
+INPUT_DF = "input.csv"
+#-------Define model functions
 class CustomLinearRegression:
     def __init__(self):
         self.coef_ = None 
@@ -37,7 +39,7 @@ class CustomLinearRegression:
         v = ((y_pred - y_test.mean()) ** 2).sum()
         r2 = (1 - u / v)
         return r2
-
+#-----Learning on dataset with linear relation with randomised noise
 models = []
 
 for NUM in range(0,2*MAX_NUM+1):
@@ -58,8 +60,8 @@ for NUM in range(0,2*MAX_NUM+1):
     models.append(model)
     
     print(f"Learning: {int(NUM*100/(2*MAX_NUM+2))} %")
-
-INPUT_DATA = "input.csv"
+#-----Fitting external dataset 
+INPUT_DATA = INPUT_DF
 data = pd.read_csv(INPUT_DATA)
 X_test = data['x1'].values.reshape(-1, 1)
 y_test = data['y1'].values.reshape(-1, 1)
@@ -98,16 +100,13 @@ df["model"] = coeff
 df.to_csv("R2values.csv", index=False)
 
 MODELcoef = df["model"][df["R2"].idxmax()]
-print(MODELcoef)
-
 r2max = df["R2"][df["R2"].idxmax()]
-
+#------Outputting values of the fit
 print("Coefficient of determination (R^2 score):", r2max)
 print("Linear coefficient of fit function:", MODELcoef)
 
 x = np.linspace(0, X_SIZE/X_DIV ,SIZE_PARAM)
 y = x*MODELcoef
-
 plt.plot(x, y, color='red', linewidth=2, label='Regression Line')
 plt.scatter(X_test, y_test, color='blue', label='Test Data')
 plt.xlabel('X')
