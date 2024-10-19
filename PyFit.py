@@ -2,15 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-SIZE_PARAM = 10**5 + 2000*100
-DISPERSION_PARAM = 2
-LINEAR_COEF = 1
-X_SIZE = 1000
-X_DIV = X_SIZE/100
-NUM_TRAIN_SETS = 1
+SIZE_PARAM = #Size used for learning dataset
+DISPERSION_PARAM = #Dispersion of the data around fixed linear curve used for learning
+X_SIZE = #Size of the x-axis
+X_DIV = #Number of decimal places used for learning
+X_DIV = X_SIZE/(10**((-1)*X_DIV)
+NUM_TRAIN_SETS = #Number of learning itterartions
 MAX_NUM = X_SIZE
 
-INPUT_DF = "input.csv"
+INPUT_DF = #Table of values for fitting
+
 #-------Define model functions
 class CustomLinearRegression:
     def __init__(self):
@@ -39,7 +40,7 @@ class CustomLinearRegression:
         v = ((y_pred - y_test.mean()) ** 2).sum()
         r2 = (1 - u / v)
         return r2
-#-----Learning on dataset with linear relation with randomised noise
+#-----Learning on dataset with linear relation with semi-randomised noise
 models = []
 
 for NUM in range(0,2*MAX_NUM+1):
