@@ -7,7 +7,6 @@ DISPERSION_PARAM = #INT Dispersion of the data around fixed linear curve used fo
 X_SIZE = #INT Size of the x-axis
 X_DIV = #INT Number of decimal places used for learning 
 X_DIV = X_SIZE/(10**((-1)*X_DIV)
-NUM_TRAIN_SETS = #Number of learning itterartions (set to 1)
 MAX_NUM = X_SIZE
 
 INPUT_DF = # STR name of table of values for fitting with x and y collumns
@@ -43,15 +42,14 @@ class CustomLinearRegression:
 #-----Learning on dataset with linear relation with semi-randomised noise
 models = []
 
-for NUM in range(0,2*MAX_NUM+1):
-    AAA = (NUM-MAX_NUM)/X_DIV
-   
+for NUM in range((-1)*MAX_NUM,MAX_NUM+1,(1/X_DIV)):
+
     X_train = []
     y_train = []
-    for n in range(1, NUM_TRAIN_SETS+2):
-        np.random.seed(n)
-        X_train.append(X_SIZE * np.random.rand(SIZE_PARAM, 1))
-        y_train.append(AAA * 1 * X_train[-1] + np.random.normal(0, n*DISPERSION_PARAM, size=(SIZE_PARAM, 1)))
+
+    np.random.seed(n)
+    X_train.append(X_SIZE * np.random.rand(SIZE_PARAM, 1))
+    y_train.append(NUM * 1 * X_train[-1] + np.random.normal(0, DISPERSION_PARAM, size=(SIZE_PARAM, 1)))
 
     X_train_all = np.concatenate(X_train)
     y_train_all = np.concatenate(y_train)
