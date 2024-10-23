@@ -2,15 +2,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-SIZE_PARAM = #Size used for learning dataset
-DISPERSION_PARAM = #Dispersion of the data around fixed linear curve used for learning
-X_SIZE = #Size of the x-axis
-X_DIV = #Number of decimal places used for learning
+SIZE_PARAM = #INT Size used for learning dataset
+DISPERSION_PARAM = #INT Dispersion of the data around fixed linear curve used for learning
+X_SIZE = #INT Size of the x-axis
+X_DIV = #INT Number of decimal places used for learning 
 X_DIV = X_SIZE/(10**((-1)*X_DIV)
-NUM_TRAIN_SETS = #Number of learning itterartions
+NUM_TRAIN_SETS = #Number of learning itterartions (set to 1)
 MAX_NUM = X_SIZE
 
-INPUT_DF = #Table of values for fitting
+INPUT_DF = # STR name of table of values for fitting with x and y collumns
 
 #-------Define model functions
 class CustomLinearRegression:
